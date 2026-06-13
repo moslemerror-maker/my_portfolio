@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moslem Ali Sheikh — IT Infrastructure & Cloud</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0e12;
+    --panel:#10161d;
+    --panel-2:#0d1318;
+    --line:#1d262f;
+    --line-bright:#2a3742;
+    --ink:#e6edf3;
+    --ink-dim:#8b9aa7;
+    --ink-faint:#5b6873;
+    --accent:#36e0a6;       /* signal green */
+    --accent-dim:#1c8f68;
+    --amber:#f5b14c;
+    --link:#6fb4ff;
+    --r:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  /* ambient grid backdrop */
+  body::before{
+    content:"";
+    position:fixed;inset:0;z-index:0;pointer-events:none;
+    background-image:
+      linear-gradient(var(--line) 1px,transparent 1px),
+      linear-gradient(90deg,var(--line) 1px,transparent 1px);
+    background-size:46px 46px;
+    -webkit-mask-image:radial-gradient(circle at 70% 0%,#000 0%,transparent 60%);
+    mask-image:radial-gradient(circle at 70% 0%,#000 0%,transparent 60%);
+    opacity:.5;
+  }
+  .wrap{max-width:1120px;margin:0 auto;padding:0 28px;position:relative;z-index:1}
+  a{color:var(--link);text-decoration:none}
+  .mono{font-family:'IBM Plex Mono',monospace}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:blur(12px);
+    background:rgba(10,14,18,.72);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .brand{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk';font-weight:700;letter-spacing:-.02em}
+  .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px var(--accent)}
+  .nav-links{display:flex;gap:26px}
+  .nav-links a{color:var(--ink-dim);font-size:14px;font-weight:500;transition:color .2s}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-cta{
+    font-family:'IBM Plex Mono';font-size:13px;color:var(--accent);
+    border:1px solid var(--accent-dim);padding:7px 14px;border-radius:8px;transition:.2s;
+  }
+  .nav-cta:hover{background:var(--accent);color:#04130d}
+  @media(max-width:720px){.nav-links{display:none}}
+
+  /* ---------- HERO ---------- */
+  header{padding:84px 0 70px;position:relative}
+  .eyebrow{
+    font-family:'IBM Plex Mono';font-size:13px;color:var(--accent);
+    letter-spacing:.04em;margin-bottom:22px;display:flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{content:"";width:30px;height:1px;background:var(--accent-dim)}
+  h1{
+    font-family:'Space Grotesk';font-weight:700;
+    font-size:clamp(2.5rem,6vw,4.6rem);line-height:1.02;letter-spacing:-.03em;
+    margin-bottom:22px;
+  }
+  h1 .grad{
+    background:linear-gradient(120deg,var(--accent),#7af2cf 60%,var(--link));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .role{
+    font-size:clamp(1rem,2.2vw,1.35rem);color:var(--ink-dim);
+    max-width:660px;margin-bottom:30px;font-weight:450;
+  }
+  .role b{color:var(--ink);font-weight:600}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:46px}
+  .btn{
+    font-family:'IBM Plex Mono';font-size:14px;font-weight:500;
+    padding:12px 22px;border-radius:10px;transition:.2s;cursor:pointer;border:1px solid transparent;
+  }
+  .btn-primary{background:var(--accent);color:#04130d}
+  .btn-primary:hover{box-shadow:0 0 26px rgba(54,224,166,.4);transform:translateY(-2px)}
+  .btn-ghost{border-color:var(--line-bright);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+  .hero-stats{display:flex;gap:40px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:30px;max-width:680px}
+  .stat .n{font-family:'Space Grotesk';font-weight:700;font-size:2rem;color:var(--ink);letter-spacing:-.02em}
+  .stat .n span{color:var(--accent)}
+  .stat .l{font-size:13px;color:var(--ink-faint);font-family:'IBM Plex Mono'}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:64px 0;position:relative}
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:42px}
+  .sec-num{font-family:'IBM Plex Mono';font-size:14px;color:var(--accent-dim)}
+  .sec-title{font-family:'Space Grotesk';font-weight:600;font-size:clamp(1.6rem,3.5vw,2.3rem);letter-spacing:-.02em}
+  .sec-sub{color:var(--ink-faint);font-size:14px;margin-left:auto;font-family:'IBM Plex Mono';align-self:center}
+  @media(max-width:600px){.sec-sub{display:none}}
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:34px}
+  @media(max-width:780px){.about-grid{grid-template-columns:1fr}}
+  .about-text p{color:var(--ink-dim);margin-bottom:18px;font-size:1.02rem}
+  .about-text b{color:var(--ink);font-weight:600}
+  .id-card{
+    background:linear-gradient(160deg,var(--panel),var(--panel-2));
+    border:1px solid var(--line);border-radius:var(--r);padding:26px;
+    align-self:start;
+  }
+  .id-card .label{font-family:'IBM Plex Mono';font-size:11px;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+  .id-row{padding:13px 0;border-bottom:1px solid var(--line)}
+  .id-row:last-child{border-bottom:none}
+  .id-row .v{color:var(--ink);font-size:14px}
+  .id-row .v a{color:var(--link)}
+
+  /* ---------- SKILLS ---------- */
+  .skill-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:880px){.skill-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.skill-grid{grid-template-columns:1fr}}
+  .skill-card{
+    background:var(--panel);border:1px solid var(--line);border-radius:var(--r);
+    padding:24px;transition:.25s;position:relative;overflow:hidden;
+  }
+  .skill-card:hover{border-color:var(--line-bright);transform:translateY(-3px)}
+  .skill-card::after{
+    content:"";position:absolute;top:0;left:0;width:100%;height:2px;
+    background:linear-gradient(90deg,var(--accent),transparent);
+    transform:scaleX(0);transform-origin:left;transition:transform .3s;
+  }
+  .skill-card:hover::after{transform:scaleX(1)}
+  .skill-card h3{font-family:'Space Grotesk';font-size:1.05rem;font-weight:600;margin-bottom:6px;display:flex;align-items:center;gap:10px}
+  .skill-card h3 .ic{color:var(--accent);font-family:'IBM Plex Mono';font-size:13px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .chip{
+    font-family:'IBM Plex Mono';font-size:12px;color:var(--ink-dim);
+    background:var(--panel-2);border:1px solid var(--line);padding:5px 10px;border-radius:7px;
+  }
+
+  /* ---------- PROJECTS / REPOS ---------- */
+  .repo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  @media(max-width:760px){.repo-grid{grid-template-columns:1fr}}
+  .repo{
+    background:var(--panel);border:1px solid var(--line);border-radius:var(--r);
+    padding:22px 22px 18px;transition:.25s;display:flex;flex-direction:column;gap:12px;
+    position:relative;
+  }
+  .repo:hover{border-color:var(--accent-dim);transform:translateY(-3px);box-shadow:0 12px 40px -18px rgba(54,224,166,.35)}
+  .repo-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .repo-name{font-family:'Space Grotesk';font-weight:600;font-size:1.12rem;color:var(--ink);display:flex;align-items:center;gap:9px}
+  .repo-name svg{width:17px;height:17px;fill:var(--ink-faint)}
+  .repo-tag{font-family:'IBM Plex Mono';font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);border:1px solid var(--accent-dim);padding:3px 8px;border-radius:20px}
+  .repo-desc{color:var(--ink-dim);font-size:.94rem;flex-grow:1}
+  .repo-foot{display:flex;align-items:center;gap:16px;font-family:'IBM Plex Mono';font-size:12px;color:var(--ink-faint);padding-top:6px;border-top:1px solid var(--line)}
+  .lang{display:flex;align-items:center;gap:6px}
+  .lang .d{width:10px;height:10px;border-radius:50%}
+  .repo-link{margin-left:auto;color:var(--link);transition:.2s}
+  .repo:hover .repo-link{color:var(--accent)}
+
+  /* ---------- EXPERIENCE TIMELINE ---------- */
+  .timeline{position:relative;padding-left:30px}
+  .timeline::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:var(--line)}
+  .tl-item{position:relative;padding-bottom:34px}
+  .tl-item:last-child{padding-bottom:0}
+  .tl-item::before{
+    content:"";position:absolute;left:-30px;top:4px;width:16px;height:16px;border-radius:50%;
+    background:var(--bg);border:2px solid var(--line-bright);
+  }
+  .tl-item.now::before{border-color:var(--accent);background:var(--accent);box-shadow:0 0 14px var(--accent)}
+  .tl-date{font-family:'IBM Plex Mono';font-size:12px;color:var(--accent-dim);margin-bottom:4px}
+  .tl-role{font-family:'Space Grotesk';font-weight:600;font-size:1.1rem}
+  .tl-co{color:var(--ink-dim);font-size:.95rem;margin-bottom:8px}
+  .tl-desc{color:var(--ink-faint);font-size:.92rem;max-width:640px}
+
+  /* ---------- CERTS ---------- */
+  .cert-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  @media(max-width:600px){.cert-grid{grid-template-columns:1fr}}
+  .cert{
+    display:flex;align-items:center;gap:14px;background:var(--panel);
+    border:1px solid var(--line);border-radius:11px;padding:16px 18px;transition:.2s;
+  }
+  .cert:hover{border-color:var(--line-bright)}
+  .cert .badge{font-family:'IBM Plex Mono';font-weight:600;font-size:13px;color:var(--amber);background:rgba(245,177,76,.1);border:1px solid rgba(245,177,76,.25);padding:8px 10px;border-radius:8px;white-space:nowrap}
+  .cert .t{font-size:.95rem;font-weight:500}
+  .cert .o{font-size:.8rem;color:var(--ink-faint);font-family:'IBM Plex Mono'}
+
+  /* ---------- CONTACT ---------- */
+  .contact{
+    background:linear-gradient(160deg,var(--panel),var(--panel-2));
+    border:1px solid var(--line);border-radius:20px;padding:54px 40px;text-align:center;margin:30px 0;
+  }
+  .contact h2{font-family:'Space Grotesk';font-weight:700;font-size:clamp(1.8rem,4vw,2.6rem);letter-spacing:-.02em;margin-bottom:14px}
+  .contact p{color:var(--ink-dim);max-width:520px;margin:0 auto 28px}
+  .contact-links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+  footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;color:var(--ink-faint);font-family:'IBM Plex Mono';font-size:13px}
+
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-in">
+    <div class="brand"><span class="dot"></span>Moslem<span style="color:var(--ink-faint);font-weight:400">.sh</span></div>
+    <div class="nav-links">
+      <a href="#about">about</a>
+      <a href="#skills">skills</a>
+      <a href="#work">projects</a>
+      <a href="#experience">experience</a>
+      <a href="#certs">certs</a>
+    </div>
+    <a class="nav-cta" href="#contact">get in touch →</a>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow mono">DEPUTY MANAGER — IT HEAD · GUWAHATI, IN</div>
+    <h1>Building reliable<br><span class="grad">infrastructure</span> that<br>simply stays up.</h1>
+    <p class="role">I'm <b>Moslem Ali Sheikh</b> — an IT infrastructure leader with 9+ years across <b>server & cloud administration</b>, <b>network security</b>, and <b>healthcare IT</b>. I run end-to-end hybrid environments and build the in-house web apps that keep them running.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="https://github.com/moslemerror-maker" target="_blank">View GitHub →</a>
+      <a class="btn btn-ghost" href="#contact">Contact me</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="n">9<span>+</span></div><div class="l">years in IT</div></div>
+      <div class="stat"><div class="n">3</div><div class="l">certifications</div></div>
+      <div class="stat"><div class="n">12<span>+</span></div><div class="l">shipped repos</div></div>
+      <div class="stat"><div class="n">HIMS</div><div class="l">+ PACS / DICOM</div></div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num mono">01</span><h2 class="sec-title">About</h2><span class="sec-sub">// who_am_i</span></div>
+    <div class="about-grid reveal">
+      <div class="about-text">
+        <p>I lead IT infrastructure at a multi-specialty hospital, where I'm implementing <b>Suvarna HIMS</b> with integrated <b>LIS</b> and administering <b>PACS / DICOM</b> medical imaging workflows — keeping clinical and administrative systems reliable, secure, and online around the clock.</p>
+        <p>My day-to-day spans on-premise and cloud servers, server hardening, backups and disaster recovery, firewalls, VLANs, and complete network security. When off-the-shelf tools fall short, I build the gap myself — <b>internal web apps and automation utilities</b> in Node.js and Python, plus mobile tools in Flutter and Expo.</p>
+        <p>I'm <b>CCNA</b> and <b>Azure AZ-104</b> certified, with a Fortinet cybersecurity credential, and I'm drawn to roles where infrastructure reliability and digital transformation meet.</p>
+      </div>
+      <div class="id-card">
+        <div class="id-row"><div class="label mono">Location</div><div class="v">Beltola, Guwahati, Assam</div></div>
+        <div class="id-row"><div class="label mono">Current role</div><div class="v">Deputy Manager — IT Head</div></div>
+        <div class="id-row"><div class="label mono">Focus</div><div class="v">Server · Cloud · Network · Healthcare IT</div></div>
+        <div class="id-row"><div class="label mono">Email</div><div class="v"><a href="mailto:isheikh2232@gmail.com">isheikh2232@gmail.com</a></div></div>
+        <div class="id-row"><div class="label mono">Languages</div><div class="v">English · Hindi · Assamese · Bengali</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num mono">02</span><h2 class="sec-title">Technical skills</h2><span class="sec-sub">// stack</span></div>
+    <div class="skill-grid">
+      <div class="skill-card reveal">
+        <h3><span class="ic mono">[01]</span>Infrastructure & Servers</h3>
+        <div class="chips">
+          <span class="chip">Windows Server 2008R2–2025</span><span class="chip">Active Directory</span>
+          <span class="chip">RDP / TSplus</span><span class="chip">Ubuntu Linux</span>
+          <span class="chip">SSH</span><span class="chip">Server hardening</span><span class="chip">NAS / Backup</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h3><span class="ic mono">[02]</span>Virtualization & Cloud</h3>
+        <div class="chips">
+          <span class="chip">Azure VMs</span><span class="chip">VMware Workstation</span>
+          <span class="chip">Linux-hosted VMs</span><span class="chip">VPN remote access</span>
+          <span class="chip">Cloudflare Tunnel</span><span class="chip">Domain & DNS</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h3><span class="ic mono">[03]</span>Networking & Security</h3>
+        <div class="chips">
+          <span class="chip">LAN / WAN</span><span class="chip">VLANs</span><span class="chip">Subnetting</span>
+          <span class="chip">TCP/IP</span><span class="chip">DNS / DHCP</span><span class="chip">Firewall config</span>
+          <span class="chip">Port forwarding</span><span class="chip">Leased-line</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h3><span class="ic mono">[04]</span>Apps & Automation</h3>
+        <div class="chips">
+          <span class="chip">Node.js</span><span class="chip">Python</span><span class="chip">REST APIs</span>
+          <span class="chip">Render + Neon</span><span class="chip">Docker</span><span class="chip">Postman</span>
+          <span class="chip">Flutter / Expo</span><span class="chip">Excel VBA / .EXE tools</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h3><span class="ic mono">[05]</span>Healthcare IT</h3>
+        <div class="chips">
+          <span class="chip">Suvarna HIMS</span><span class="chip">LIS integration</span>
+          <span class="chip">PACS administration</span><span class="chip">DICOM workflows</span>
+          <span class="chip">Clinical / lab systems</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h3><span class="ic mono">[06]</span>Support & Operations</h3>
+        <div class="chips">
+          <span class="chip">Hardware / CCTV / GPS</span><span class="chip">IT asset management</span>
+          <span class="chip">AMC & vendor coord.</span><span class="chip">MIS automation</span>
+          <span class="chip">Power Query / DAX</span><span class="chip">Tally / ERP</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num mono">03</span><h2 class="sec-title">Projects & repositories</h2><span class="sec-sub">// github.com/moslemerror-maker</span></div>
+    <div class="repo-grid">
+
+      <a class="repo reveal" href="https://github.com/moslemerror-maker/ner-logistics" target="_blank">
+        <div class="repo-top"><div class="repo-name"><svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 005.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.5 7.5 0 014 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>ner-logistics</div><span class="repo-tag">App</span></div>
+        <p class="repo-desc">Logistics management application for tracking and coordinating freight operations.</p>
+        <div class="repo-foot"><span class="lang"><span class="d" style="background:#3178c6"></span>TypeScript</span><span class="repo-link">view repo →</span></div>
+      </a>
+
+      <a class="repo reveal" href="https://github.com/moslemerror-maker/pharmacare-backend" target="_blank">
+        <div class="repo-top"><div class="repo-name"><svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 005.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.5 7.5 0 014 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>pharmacare-backend</div><span class="repo-tag">API</span></div>
+        <p class="repo-desc">Backend service for the PharmaCare platform — pharmacy / medication management APIs.</p>
+        <div class="repo-foot"><span class="lang"><span class="d" style="background:#f1e05a"></span>JavaScript</span><span class="repo-link">view repo →</span></div>
+      </a>
+
+      <a class="repo reveal" href="https://github.com/moslemerror-maker/pharmacare-frontend" target="_blank">
+        <div class="repo-top"><div class="repo-name"><svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 005.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.5 7.5 0 014 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>pharmacare-frontend</div><span class="repo-tag">Web</span></div>
+        <p class="repo-desc">Frontend for the PharmaCare platform — UI for managing pharmacy and patient workflows.</p>
+        <div class="repo-foot"><span class="lang"><span class="d" style="background:#f1e05a"></span>JavaScript</span><span class="repo-link">view repo →</span></div>
+      </a>
+
+      <a class="repo reveal" href="https://github.com/moslemerror-maker/hardware-tracker" target="_blank">
+        <div class="repo-top"><div class="repo-name"><svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 005.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.5 7.5 0 014 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>hardware-tracker</div><span class="repo-tag">Tool</span></div>
+        <p class="repo-desc">IT hardware & asset tracking tool for logging, assigning, and monitoring equipment.</p>
+        <div class="repo-foot"><span class="lang"><span class="d" style="background:#f1e05a"></span>JavaScript</span><span class="repo-link">view repo →</span></div>
+      </a>
+
+      <a class="repo reveal" href="https://github.com/moslemerror-maker/best-cement-crm-portal" target="_blank">
+        <div class="repo-top"><div class="repo-name"><svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 005.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.5 7.5 0 014 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>best-cement-crm-portal</div><span class="repo-tag">CRM</span></div>
+        <p class="repo-desc">In-house CRM portal for managing employees, dealers, and sub-dealers — with birthday reminders.</p>
+        <div class="repo-foot"><span class="lang"><span class="d" style="background:#f1e05a"></span>JavaScript</span><span class="repo-link">view repo →</span></div>
+      </a>
+
+      <a class="repo reveal" href="https://github.com/moslemerror-maker/sales-tracker" target="_blank">
+        <div class="repo-top"><div class="repo-name"><svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 005.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.5 7.5 0 014 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>sales-tracker</div><span class="repo-tag">App</span></div>
+        <p class="repo-desc">Sales tracking application for monitoring field-sales activity and performance.</p>
+        <div class="repo-foot"><span class="lang"><span class="d" style="background:#3178c6"></span>TypeScript</span><span class="repo-link">view repo →</span></div>
+      </a>
+
+      <a class="repo reveal" href="https://github.com/moslemerror-maker/sfa" target="_blank">
+        <div class="repo-top"><div class="repo-name"><svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 005.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.5 7.5 0 014 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>sfa</div><span class="repo-tag">App</span></div>
+        <p class="repo-desc">Sales Force Automation tool for managing field staff, routes, and reporting.</p>
+        <div class="repo-foot"><span class="lang"><span class="d" style="background:#8b9aa7"></span>Mixed</span><span class="repo-link">view repo →</span></div>
+      </a>
+
+      <a class="repo reveal" href="https://github.com/moslemerror-maker/roadways-ledger-backend" target="_blank">
+        <div class="repo-top"><div class="repo-name"><svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 005.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.5 7.5 0 014 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>roadways-ledger</div><span class="repo-tag">Full-stack</span></div>
+        <p class="repo-desc">Ledger & accounting system for roadways / transport operations — backend + HTML frontend.</p>
+        <div class="repo-foot"><span class="lang"><span class="d" style="background:#f1e05a"></span>JS + HTML</span><span class="repo-link">view repo →</span></div>
+      </a>
+
+      <a class="repo reveal" href="https://github.com/moslemerror-maker/asset-app-backend" target="_blank">
+        <div class="repo-top"><div class="repo-name"><svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 005.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.5 7.5 0 014 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>asset-app</div><span class="repo-tag">Full-stack</span></div>
+        <p class="repo-desc">IT asset management application — backend APIs with an HTML frontend for tracking assets.</p>
+        <div class="repo-foot"><span class="lang"><span class="d" style="background:#f1e05a"></span>JS + HTML</span><span class="repo-link">view repo →</span></div>
+      </a>
+
+    </div>
+    <p style="margin-top:24px;color:var(--ink-faint);font-family:'IBM Plex Mono';font-size:13px">→ See all repositories on <a href="https://github.com/moslemerror-maker?tab=repositories" target="_blank">github.com/moslemerror-maker</a></p>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num mono">04</span><h2 class="sec-title">Experience</h2><span class="sec-sub">// 9+ years</span></div>
+    <div class="timeline reveal">
+      <div class="tl-item now">
+        <div class="tl-date mono">MAR 2026 — PRESENT</div>
+        <div class="tl-role">Deputy Manager — IT Head</div>
+        <div class="tl-co">Marwari Hospitals, Guwahati</div>
+        <div class="tl-desc">Lead end-to-end IT infrastructure: on-prem & cloud servers, networking, and security. Implementing Suvarna HIMS with integrated LIS, administering PACS/DICOM imaging, building in-house web apps, and managing firewalls, VLANs, backups, and disaster recovery.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date mono">SEP 2025 — MAR 2026</div>
+        <div class="tl-role">Senior IT Executive</div>
+        <div class="tl-co">JUD Cement Ltd. (Best Cement), Guwahati</div>
+        <div class="tl-desc">Managed Windows & Linux servers, NAS infrastructure, and backups. Administered VPN, RDP, TSplus, and Cloudflare Tunnel for remote access. Maintained internal apps, mobile sales systems, email, domains, and DNS.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date mono">JAN 2024 — SEP 2025</div>
+        <div class="tl-role">Senior IT — MIS Executive</div>
+        <div class="tl-co">Singh Brothers, Guwahati</div>
+        <div class="tl-desc">Ran Tally & Syvasoft ERP operations and weighbridge automation. Automated reports with Power Query and DAX to improve data accuracy and cut manual effort.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date mono">OCT 2021 — JAN 2024</div>
+        <div class="tl-role">Assistant Manager — IT</div>
+        <div class="tl-co">Indo-Bangla Minerals Mine, Meghalaya</div>
+        <div class="tl-desc">Administered Windows Servers and Active Directory, managed RDP and Tally environments, and handled LAN/WAN, switches, firewall, CCTV, GPS, and EMM (MobiControl) device management.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date mono">2017 — 2021</div>
+        <div class="tl-role">IT Executive roles</div>
+        <div class="tl-co">Parcon · Purbanchal Cement · Al-Ghafees Construction (Riyadh, KSA)</div>
+        <div class="tl-desc">Early-career foundation: Windows Server 2008 & Linux administration, LAN infrastructure, firewall troubleshooting, ERP/Tally support, and mobile sales-force applications across India and Saudi Arabia.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="certs">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num mono">05</span><h2 class="sec-title">Certifications & education</h2><span class="sec-sub">// credentials</span></div>
+    <div class="cert-grid reveal">
+      <div class="cert"><span class="badge">CCNA</span><div><div class="t">Cisco Certified Network Associate</div><div class="o mono">Cisco</div></div></div>
+      <div class="cert"><span class="badge">AZ-104</span><div><div class="t">Azure Administrator Associate</div><div class="o mono">Microsoft</div></div></div>
+      <div class="cert"><span class="badge">FCA</span><div><div class="t">Fortinet Certified Associate — Cybersecurity</div><div class="o mono">Fortinet</div></div></div>
+      <div class="cert"><span class="badge">HW</span><div><div class="t">Hardware & Upgrade Support</div><div class="o mono">Cisco Networking Academy</div></div></div>
+      <div class="cert"><span class="badge">XLS</span><div><div class="t">Advanced Excel</div><div class="o mono">Amity University</div></div></div>
+      <div class="cert"><span class="badge">DS</span><div><div class="t">Data Science & Analytics</div><div class="o mono">HP LIFE</div></div></div>
+      <div class="cert"><span class="badge">BCA</span><div><div class="t">Bachelor of Computer Applications</div><div class="o mono">IGNOU</div></div></div>
+      <div class="cert"><span class="badge">ADCA</span><div><div class="t">Adv. Diploma in Computer Applications</div><div class="o mono">Third Eye Institute</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact reveal">
+      <h2>Let's build something reliable.</h2>
+      <p>Open to senior IT leadership roles in infrastructure, cloud, and healthcare IT. The fastest way to reach me is email.</p>
+      <div class="contact-links">
+        <a class="btn btn-primary" href="mailto:isheikh2232@gmail.com">isheikh2232@gmail.com</a>
+        <a class="btn btn-ghost" href="https://github.com/moslemerror-maker" target="_blank">GitHub</a>
+        <a class="btn btn-ghost" href="tel:+919706937978">+91 97069 37978</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© 2026 Moslem Ali Sheikh · Guwahati, Assam, India · <span style="color:var(--accent-dim)">built for uptime</span></div>
+</footer>
+
+<script>
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
