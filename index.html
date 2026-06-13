@@ -3,228 +3,163 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Moslem Ali Sheikh — IT Infrastructure & Cloud</title>
+<title>Moslem Ali Sheikh — IT Infrastructure, Cloud & Full-Stack</title>
+<meta name="description" content="Moslem Ali Sheikh — IT Head, server/cloud/network administrator and full-stack developer. 9+ years across infrastructure, healthcare IT, databases, and web apps.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;450;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0a0e12;
-    --panel:#10161d;
-    --panel-2:#0d1318;
-    --line:#1d262f;
-    --line-bright:#2a3742;
-    --ink:#e6edf3;
-    --ink-dim:#8b9aa7;
-    --ink-faint:#5b6873;
-    --accent:#36e0a6;       /* signal green */
-    --accent-dim:#1c8f68;
-    --amber:#f5b14c;
-    --link:#6fb4ff;
-    --r:14px;
+    --bg:#080b0f;--panel:#10161d;--panel-2:#0c1217;--line:#1b242d;--line-bright:#2b3946;
+    --ink:#e8eff5;--ink-dim:#8d9caa;--ink-faint:#586673;
+    --accent:#36e0a6;--accent-2:#6fb4ff;--accent-dim:#1c8f68;--amber:#f5b14c;--link:#6fb4ff;--r:14px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{
-    background:var(--bg);
-    color:var(--ink);
-    font-family:'Inter',system-ui,sans-serif;
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
-  }
-  /* ambient grid backdrop */
-  body::before{
-    content:"";
-    position:fixed;inset:0;z-index:0;pointer-events:none;
-    background-image:
-      linear-gradient(var(--line) 1px,transparent 1px),
-      linear-gradient(90deg,var(--line) 1px,transparent 1px);
-    background-size:46px 46px;
-    -webkit-mask-image:radial-gradient(circle at 70% 0%,#000 0%,transparent 60%);
-    mask-image:radial-gradient(circle at 70% 0%,#000 0%,transparent 60%);
-    opacity:.5;
-  }
-  .wrap{max-width:1120px;margin:0 auto;padding:0 28px;position:relative;z-index:1}
+  body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:48px 48px;-webkit-mask-image:radial-gradient(circle at 72% -5%,#000 0%,transparent 58%);mask-image:radial-gradient(circle at 72% -5%,#000 0%,transparent 58%);opacity:.45}
+  .orb{position:fixed;border-radius:50%;filter:blur(90px);opacity:.16;z-index:0;pointer-events:none}
+  .orb.a{width:480px;height:480px;background:var(--accent);top:-160px;right:-120px;animation:float1 18s ease-in-out infinite}
+  .orb.b{width:420px;height:420px;background:var(--accent-2);bottom:10%;left:-180px;animation:float2 22s ease-in-out infinite}
+  @keyframes float1{0%,100%{transform:translate(0,0)}50%{transform:translate(-40px,40px)}}
+  @keyframes float2{0%,100%{transform:translate(0,0)}50%{transform:translate(50px,-30px)}}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 28px;position:relative;z-index:2}
   a{color:var(--link);text-decoration:none}
   .mono{font-family:'IBM Plex Mono',monospace}
-
-  /* ---------- NAV ---------- */
-  nav{
-    position:sticky;top:0;z-index:50;
-    backdrop-filter:blur(12px);
-    background:rgba(10,14,18,.72);
-    border-bottom:1px solid var(--line);
-  }
+  #progress{position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,var(--accent),var(--accent-2));z-index:99;box-shadow:0 0 10px var(--accent)}
+  nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(8,11,15,.7);border-bottom:1px solid var(--line)}
   .nav-in{display:flex;align-items:center;justify-content:space-between;height:62px}
-  .brand{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk';font-weight:700;letter-spacing:-.02em}
-  .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px var(--accent)}
-  .nav-links{display:flex;gap:26px}
-  .nav-links a{color:var(--ink-dim);font-size:14px;font-weight:500;transition:color .2s}
+  .brand{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk';font-weight:700;letter-spacing:-.02em;font-size:1.05rem}
+  .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px var(--accent);animation:pulse 2.4s infinite}
+  @keyframes pulse{0%,100%{box-shadow:0 0 6px var(--accent)}50%{box-shadow:0 0 18px var(--accent)}}
+  .nav-links{display:flex;gap:24px}
+  .nav-links a{color:var(--ink-dim);font-size:14px;font-weight:500;transition:color .2s;position:relative}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:-5px;width:0;height:1px;background:var(--accent);transition:width .25s}
   .nav-links a:hover{color:var(--ink)}
-  .nav-cta{
-    font-family:'IBM Plex Mono';font-size:13px;color:var(--accent);
-    border:1px solid var(--accent-dim);padding:7px 14px;border-radius:8px;transition:.2s;
-  }
-  .nav-cta:hover{background:var(--accent);color:#04130d}
-  @media(max-width:720px){.nav-links{display:none}}
-
-  /* ---------- HERO ---------- */
-  header{padding:84px 0 70px;position:relative}
-  .eyebrow{
-    font-family:'IBM Plex Mono';font-size:13px;color:var(--accent);
-    letter-spacing:.04em;margin-bottom:22px;display:flex;align-items:center;gap:10px;
-  }
+  .nav-links a:hover::after{width:100%}
+  .nav-cta{font-family:'IBM Plex Mono';font-size:13px;color:var(--accent);border:1px solid var(--accent-dim);padding:7px 14px;border-radius:8px;transition:.2s}
+  .nav-cta:hover{background:var(--accent);color:#04130d;box-shadow:0 0 18px rgba(54,224,166,.4)}
+  @media(max-width:760px){.nav-links{display:none}}
+  header{padding:90px 0 72px;position:relative}
+  .eyebrow{font-family:'IBM Plex Mono';font-size:13px;color:var(--accent);letter-spacing:.04em;margin-bottom:22px;display:flex;align-items:center;gap:10px}
   .eyebrow::before{content:"";width:30px;height:1px;background:var(--accent-dim)}
-  h1{
-    font-family:'Space Grotesk';font-weight:700;
-    font-size:clamp(2.5rem,6vw,4.6rem);line-height:1.02;letter-spacing:-.03em;
-    margin-bottom:22px;
-  }
-  h1 .grad{
-    background:linear-gradient(120deg,var(--accent),#7af2cf 60%,var(--link));
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-  }
-  .role{
-    font-size:clamp(1rem,2.2vw,1.35rem);color:var(--ink-dim);
-    max-width:660px;margin-bottom:30px;font-weight:450;
-  }
+  h1{font-family:'Space Grotesk';font-weight:700;font-size:clamp(2.5rem,6.2vw,4.7rem);line-height:1.02;letter-spacing:-.03em;margin-bottom:24px}
+  h1 .grad{background:linear-gradient(120deg,var(--accent),#7af2cf 55%,var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .typed-line{color:var(--accent);min-height:1.1em;display:inline-block}
+  .caret{display:inline-block;width:3px;height:1em;background:var(--accent);margin-left:2px;vertical-align:-2px;animation:blink 1s step-end infinite}
+  @keyframes blink{50%{opacity:0}}
+  .role{font-size:clamp(1rem,2.1vw,1.3rem);color:var(--ink-dim);max-width:680px;margin-bottom:18px;font-weight:450}
   .role b{color:var(--ink);font-weight:600}
-  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:46px}
-  .btn{
-    font-family:'IBM Plex Mono';font-size:14px;font-weight:500;
-    padding:12px 22px;border-radius:10px;transition:.2s;cursor:pointer;border:1px solid transparent;
-  }
+  .role-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px}
+  .rtag{font-family:'IBM Plex Mono';font-size:12px;color:var(--accent);background:rgba(54,224,166,.07);border:1px solid var(--accent-dim);padding:5px 11px;border-radius:20px}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:48px}
+  .btn{font-family:'IBM Plex Mono';font-size:14px;font-weight:500;padding:12px 22px;border-radius:10px;transition:.25s;cursor:pointer;border:1px solid transparent;display:inline-flex;align-items:center;gap:8px}
   .btn-primary{background:var(--accent);color:#04130d}
-  .btn-primary:hover{box-shadow:0 0 26px rgba(54,224,166,.4);transform:translateY(-2px)}
+  .btn-primary:hover{box-shadow:0 0 28px rgba(54,224,166,.45);transform:translateY(-2px)}
   .btn-ghost{border-color:var(--line-bright);color:var(--ink)}
-  .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
-  .hero-stats{display:flex;gap:40px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:30px;max-width:680px}
-  .stat .n{font-family:'Space Grotesk';font-weight:700;font-size:2rem;color:var(--ink);letter-spacing:-.02em}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+  .hero-stats{display:flex;gap:42px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:30px;max-width:720px}
+  .stat .n{font-family:'Space Grotesk';font-weight:700;font-size:2.1rem;color:var(--ink);letter-spacing:-.02em}
   .stat .n span{color:var(--accent)}
-  .stat .l{font-size:13px;color:var(--ink-faint);font-family:'IBM Plex Mono'}
-
-  /* ---------- SECTION SHELL ---------- */
-  section{padding:64px 0;position:relative}
+  .stat .l{font-size:12.5px;color:var(--ink-faint);font-family:'IBM Plex Mono'}
+  section{padding:66px 0;position:relative}
   .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:42px}
   .sec-num{font-family:'IBM Plex Mono';font-size:14px;color:var(--accent-dim)}
-  .sec-title{font-family:'Space Grotesk';font-weight:600;font-size:clamp(1.6rem,3.5vw,2.3rem);letter-spacing:-.02em}
-  .sec-sub{color:var(--ink-faint);font-size:14px;margin-left:auto;font-family:'IBM Plex Mono';align-self:center}
+  .sec-title{font-family:'Space Grotesk';font-weight:600;font-size:clamp(1.6rem,3.6vw,2.35rem);letter-spacing:-.02em}
+  .sec-sub{color:var(--ink-faint);font-size:13px;margin-left:auto;font-family:'IBM Plex Mono';align-self:center}
   @media(max-width:600px){.sec-sub{display:none}}
-
-  /* ---------- ABOUT ---------- */
-  .about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:34px}
+  .about-grid{display:grid;grid-template-columns:1.45fr 1fr;gap:34px}
   @media(max-width:780px){.about-grid{grid-template-columns:1fr}}
   .about-text p{color:var(--ink-dim);margin-bottom:18px;font-size:1.02rem}
   .about-text b{color:var(--ink);font-weight:600}
-  .id-card{
-    background:linear-gradient(160deg,var(--panel),var(--panel-2));
-    border:1px solid var(--line);border-radius:var(--r);padding:26px;
-    align-self:start;
-  }
-  .id-card .label{font-family:'IBM Plex Mono';font-size:11px;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+  .id-card{background:linear-gradient(160deg,var(--panel),var(--panel-2));border:1px solid var(--line);border-radius:var(--r);padding:24px;align-self:start;transition:.3s}
+  .id-card:hover{border-color:var(--line-bright);transform:translateY(-3px)}
   .id-row{padding:13px 0;border-bottom:1px solid var(--line)}
   .id-row:last-child{border-bottom:none}
+  .id-row .label{font-family:'IBM Plex Mono';font-size:11px;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
   .id-row .v{color:var(--ink);font-size:14px}
   .id-row .v a{color:var(--link)}
-
-  /* ---------- SKILLS ---------- */
+  .status-line{display:flex;align-items:center;gap:8px;font-family:'IBM Plex Mono';font-size:12px;color:var(--accent);margin-top:18px}
+  .status-line .pip{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);animation:pulse 2s infinite}
+  .do-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  @media(max-width:900px){.do-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.do-grid{grid-template-columns:1fr}}
+  .do-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:22px;transition:.25s;position:relative;overflow:hidden}
+  .do-card:hover{border-color:var(--line-bright);transform:translateY(-4px)}
+  .do-card .ic{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(54,224,166,.08);border:1px solid var(--accent-dim);margin-bottom:14px}
+  .do-card .ic svg{width:22px;height:22px;stroke:var(--accent);fill:none;stroke-width:1.7}
+  .do-card h3{font-family:'Space Grotesk';font-size:1.02rem;font-weight:600;margin-bottom:6px}
+  .do-card p{font-size:.86rem;color:var(--ink-dim)}
   .skill-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
   @media(max-width:880px){.skill-grid{grid-template-columns:repeat(2,1fr)}}
   @media(max-width:560px){.skill-grid{grid-template-columns:1fr}}
-  .skill-card{
-    background:var(--panel);border:1px solid var(--line);border-radius:var(--r);
-    padding:24px;transition:.25s;position:relative;overflow:hidden;
-  }
+  .skill-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:24px;transition:.25s;position:relative;overflow:hidden}
   .skill-card:hover{border-color:var(--line-bright);transform:translateY(-3px)}
-  .skill-card::after{
-    content:"";position:absolute;top:0;left:0;width:100%;height:2px;
-    background:linear-gradient(90deg,var(--accent),transparent);
-    transform:scaleX(0);transform-origin:left;transition:transform .3s;
-  }
+  .skill-card::after{content:"";position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--accent),transparent);transform:scaleX(0);transform-origin:left;transition:transform .35s}
   .skill-card:hover::after{transform:scaleX(1)}
   .skill-card h3{font-family:'Space Grotesk';font-size:1.05rem;font-weight:600;margin-bottom:6px;display:flex;align-items:center;gap:10px}
   .skill-card h3 .ic{color:var(--accent);font-family:'IBM Plex Mono';font-size:13px}
   .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
-  .chip{
-    font-family:'IBM Plex Mono';font-size:12px;color:var(--ink-dim);
-    background:var(--panel-2);border:1px solid var(--line);padding:5px 10px;border-radius:7px;
-  }
-
-  /* ---------- PROJECTS / REPOS ---------- */
+  .chip{font-family:'IBM Plex Mono';font-size:12px;color:var(--ink-dim);background:var(--panel-2);border:1px solid var(--line);padding:5px 10px;border-radius:7px;transition:.2s}
+  .chip:hover{border-color:var(--accent-dim);color:var(--ink)}
   .repo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
   @media(max-width:760px){.repo-grid{grid-template-columns:1fr}}
-  .repo{
-    background:var(--panel);border:1px solid var(--line);border-radius:var(--r);
-    padding:22px 22px 18px;transition:.25s;display:flex;flex-direction:column;gap:12px;
-    position:relative;
-  }
-  .repo:hover{border-color:var(--accent-dim);transform:translateY(-3px);box-shadow:0 12px 40px -18px rgba(54,224,166,.35)}
+  .repo{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:22px 22px 18px;transition:.28s;display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden}
+  .repo::before{content:"";position:absolute;inset:0;background:radial-gradient(400px circle at var(--mx,50%) var(--my,0%),rgba(54,224,166,.07),transparent 40%);opacity:0;transition:opacity .3s;pointer-events:none}
+  .repo:hover::before{opacity:1}
+  .repo:hover{border-color:var(--accent-dim);transform:translateY(-4px);box-shadow:0 14px 44px -18px rgba(54,224,166,.4)}
   .repo-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
   .repo-name{font-family:'Space Grotesk';font-weight:600;font-size:1.12rem;color:var(--ink);display:flex;align-items:center;gap:9px}
   .repo-name svg{width:17px;height:17px;fill:var(--ink-faint)}
-  .repo-tag{font-family:'IBM Plex Mono';font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);border:1px solid var(--accent-dim);padding:3px 8px;border-radius:20px}
+  .repo-tag{font-family:'IBM Plex Mono';font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);border:1px solid var(--accent-dim);padding:3px 8px;border-radius:20px;white-space:nowrap}
   .repo-desc{color:var(--ink-dim);font-size:.94rem;flex-grow:1}
   .repo-foot{display:flex;align-items:center;gap:16px;font-family:'IBM Plex Mono';font-size:12px;color:var(--ink-faint);padding-top:6px;border-top:1px solid var(--line)}
   .lang{display:flex;align-items:center;gap:6px}
   .lang .d{width:10px;height:10px;border-radius:50%}
   .repo-link{margin-left:auto;color:var(--link);transition:.2s}
-  .repo:hover .repo-link{color:var(--accent)}
-
-  /* ---------- EXPERIENCE TIMELINE ---------- */
+  .repo:hover .repo-link{color:var(--accent);transform:translateX(3px)}
   .timeline{position:relative;padding-left:30px}
   .timeline::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:var(--line)}
   .tl-item{position:relative;padding-bottom:34px}
   .tl-item:last-child{padding-bottom:0}
-  .tl-item::before{
-    content:"";position:absolute;left:-30px;top:4px;width:16px;height:16px;border-radius:50%;
-    background:var(--bg);border:2px solid var(--line-bright);
-  }
+  .tl-item::before{content:"";position:absolute;left:-30px;top:4px;width:16px;height:16px;border-radius:50%;background:var(--bg);border:2px solid var(--line-bright);transition:.3s}
+  .tl-item:hover::before{border-color:var(--accent)}
   .tl-item.now::before{border-color:var(--accent);background:var(--accent);box-shadow:0 0 14px var(--accent)}
   .tl-date{font-family:'IBM Plex Mono';font-size:12px;color:var(--accent-dim);margin-bottom:4px}
   .tl-role{font-family:'Space Grotesk';font-weight:600;font-size:1.1rem}
   .tl-co{color:var(--ink-dim);font-size:.95rem;margin-bottom:8px}
-  .tl-desc{color:var(--ink-faint);font-size:.92rem;max-width:640px}
-
-  /* ---------- CERTS ---------- */
+  .tl-desc{color:var(--ink-faint);font-size:.92rem;max-width:660px}
   .cert-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
   @media(max-width:600px){.cert-grid{grid-template-columns:1fr}}
-  .cert{
-    display:flex;align-items:center;gap:14px;background:var(--panel);
-    border:1px solid var(--line);border-radius:11px;padding:16px 18px;transition:.2s;
-  }
-  .cert:hover{border-color:var(--line-bright)}
+  .cert{display:flex;align-items:center;gap:14px;background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:16px 18px;transition:.25s}
+  .cert:hover{border-color:var(--line-bright);transform:translateX(4px)}
   .cert .badge{font-family:'IBM Plex Mono';font-weight:600;font-size:13px;color:var(--amber);background:rgba(245,177,76,.1);border:1px solid rgba(245,177,76,.25);padding:8px 10px;border-radius:8px;white-space:nowrap}
   .cert .t{font-size:.95rem;font-weight:500}
   .cert .o{font-size:.8rem;color:var(--ink-faint);font-family:'IBM Plex Mono'}
-
-  /* ---------- CONTACT ---------- */
-  .contact{
-    background:linear-gradient(160deg,var(--panel),var(--panel-2));
-    border:1px solid var(--line);border-radius:20px;padding:54px 40px;text-align:center;margin:30px 0;
-  }
-  .contact h2{font-family:'Space Grotesk';font-weight:700;font-size:clamp(1.8rem,4vw,2.6rem);letter-spacing:-.02em;margin-bottom:14px}
-  .contact p{color:var(--ink-dim);max-width:520px;margin:0 auto 28px}
-  .contact-links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-
+  .ms-box{margin-top:34px;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:24px}
+  .ms-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+  @media(max-width:600px){.ms-grid{grid-template-columns:1fr}}
+  .contact{background:linear-gradient(160deg,var(--panel),var(--panel-2));border:1px solid var(--line);border-radius:20px;padding:54px 40px;text-align:center;margin:30px 0;position:relative;overflow:hidden}
+  .contact::before{content:"";position:absolute;top:-50%;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(54,224,166,.12),transparent 70%)}
+  .contact h2{font-family:'Space Grotesk';font-weight:700;font-size:clamp(1.8rem,4vw,2.6rem);letter-spacing:-.02em;margin-bottom:14px;position:relative}
+  .contact p{color:var(--ink-dim);max-width:520px;margin:0 auto 28px;position:relative}
+  .contact-links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative}
   footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;color:var(--ink-faint);font-family:'IBM Plex Mono';font-size:13px}
-
-  .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease}
   .reveal.in{opacity:1;transform:none}
-  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.orb{animation:none}.caret{animation:none}}
 </style>
 </head>
 <body>
+<div id="progress"></div>
+<div class="orb a"></div><div class="orb b"></div>
 
 <nav>
   <div class="wrap nav-in">
     <div class="brand"><span class="dot"></span>Moslem Ali Sheikh</div>
     <div class="nav-links">
-      <a href="#about">about</a>
-      <a href="#skills">skills</a>
-      <a href="#work">projects</a>
-      <a href="#experience">experience</a>
-      <a href="#certs">certs</a>
+      <a href="#about">about</a><a href="#do">what i do</a><a href="#skills">skills</a>
+      <a href="#work">projects</a><a href="#experience">experience</a><a href="#certs">certs</a>
     </div>
     <a class="nav-cta" href="#contact">get in touch →</a>
   </div>
@@ -232,37 +167,71 @@
 
 <header>
   <div class="wrap">
-    <div class="eyebrow mono">DEPUTY MANAGER — IT HEAD · GUWAHATI, IN</div>
-    <h1>Building reliable<br><span class="grad">infrastructure</span> that<br>simply stays up.</h1>
-    <p class="role">I'm <b>Moslem Ali Sheikh</b> — an IT infrastructure leader with 9+ years across <b>server & cloud administration</b>, <b>network security</b>, and <b>healthcare IT</b>. I run end-to-end hybrid environments and build the in-house web apps that keep them running.</p>
+    <div class="eyebrow mono">IT HEAD · FULL-STACK BUILDER · GUWAHATI, IN</div>
+    <h1>I build, secure &amp;<br>run <span class="grad">end-to-end</span><br><span class="typed-line" id="typed"></span><span class="caret"></span></h1>
+    <p class="role">I'm <b>Moslem Ali Sheikh</b> — an IT leader with 9+ years spanning <b>server &amp; cloud administration</b>, <b>network security</b>, and <b>healthcare IT</b>. I don't stop at infrastructure: I design databases, write SQL, and ship full <b>frontend + backend</b> web apps that the business actually runs on.</p>
+    <div class="role-tags">
+      <span class="rtag">Infrastructure</span><span class="rtag">Cloud / Azure</span><span class="rtag">Networking</span>
+      <span class="rtag">Database / SQL</span><span class="rtag">Backend</span><span class="rtag">Frontend</span><span class="rtag">Healthcare IT</span>
+    </div>
     <div class="hero-cta">
       <a class="btn btn-primary" href="https://github.com/moslemerror-maker" target="_blank">View GitHub →</a>
       <a class="btn btn-ghost" href="#contact">Contact me</a>
     </div>
     <div class="hero-stats">
-      <div class="stat"><div class="n">9<span>+</span></div><div class="l">years in IT</div></div>
-      <div class="stat"><div class="n">3</div><div class="l">certifications</div></div>
-      <div class="stat"><div class="n">12<span>+</span></div><div class="l">shipped repos</div></div>
-      <div class="stat"><div class="n">HIMS</div><div class="l">+ PACS / DICOM</div></div>
+      <div class="stat"><div class="n"><span class="count" data-to="9">0</span><span>+</span></div><div class="l">years in IT</div></div>
+      <div class="stat"><div class="n"><span class="count" data-to="12">0</span><span>+</span></div><div class="l">apps shipped</div></div>
+      <div class="stat"><div class="n"><span class="count" data-to="6">0</span></div><div class="l">certifications</div></div>
+      <div class="stat"><div class="n"><span class="count" data-to="7">0</span></div><div class="l">companies</div></div>
     </div>
   </div>
 </header>
 
 <section id="about">
   <div class="wrap">
-    <div class="sec-head"><span class="sec-num mono">01</span><h2 class="sec-title">About</h2><span class="sec-sub">// who_am_i</span></div>
+    <div class="sec-head"><span class="sec-num mono">01</span><h2 class="sec-title">About</h2><span class="sec-sub">// profile</span></div>
     <div class="about-grid reveal">
       <div class="about-text">
-        <p>I lead IT infrastructure at a multi-specialty hospital, where I'm implementing <b>Suvarna HIMS</b> with integrated <b>LIS</b> and administering <b>PACS / DICOM</b> medical imaging workflows — keeping clinical and administrative systems reliable, secure, and online around the clock.</p>
-        <p>My day-to-day spans on-premise and cloud servers, server hardening, backups and disaster recovery, firewalls, VLANs, and complete network security. When off-the-shelf tools fall short, I build the gap myself — <b>internal web apps and automation utilities</b> in Node.js and Python, plus mobile tools in Flutter and Expo.</p>
-        <p>I'm <b>CCNA</b> and <b>Azure AZ-104</b> certified, with a Fortinet cybersecurity credential, and I'm drawn to roles where infrastructure reliability and digital transformation meet.</p>
+        <p>I'm a hands-on technologist who works across the entire technology stack of a business — from the <b>servers and network up to the application layer</b>. As Deputy Manager — IT Head at a multi-specialty hospital, I run the whole infrastructure: on-prem and cloud servers, firewalls, VLANs, backups, and disaster recovery, while implementing <b>Suvarna HIMS</b> with integrated <b>LIS</b> and administering <b>PACS / DICOM</b> imaging.</p>
+        <p>But infrastructure is only half of what I do. I'm a <b>full-stack developer</b> too — I design and manage <b>databases</b>, write <b>SQL</b>, build <b>REST APIs</b> and backends in Node.js and Python, craft frontends, and deploy to the cloud with Render, Neon, and Vercel. When a workflow needs software that doesn't exist yet, I build it in-house rather than buy it.</p>
+        <p>That blend — someone who can rack a server, harden a firewall, model a database, and ship the web app on top — is rare, and it's what lets me deliver <b>complete digital transformation</b> instead of pieces of it.</p>
       </div>
       <div class="id-card">
+        <div class="id-row"><div class="label mono">Name</div><div class="v">Moslem Ali Sheikh</div></div>
+        <div class="id-row"><div class="label mono">Role</div><div class="v">Deputy Manager — IT Head</div></div>
         <div class="id-row"><div class="label mono">Location</div><div class="v">Beltola, Guwahati, Assam</div></div>
-        <div class="id-row"><div class="label mono">Current role</div><div class="v">Deputy Manager — IT Head</div></div>
-        <div class="id-row"><div class="label mono">Focus</div><div class="v">Server · Cloud · Network · Healthcare IT</div></div>
+        <div class="id-row"><div class="label mono">Focus</div><div class="v">Infra · Cloud · Network · Full-Stack · Healthcare IT</div></div>
         <div class="id-row"><div class="label mono">Email</div><div class="v"><a href="mailto:isheikh2232@gmail.com">isheikh2232@gmail.com</a></div></div>
         <div class="id-row"><div class="label mono">Languages</div><div class="v">English · Hindi · Assamese · Bengali</div></div>
+        <div class="status-line"><span class="pip"></span>Open to senior IT leadership roles</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="do">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num mono">02</span><h2 class="sec-title">What I do</h2><span class="sec-sub">// end_to_end</span></div>
+    <div class="do-grid">
+      <div class="do-card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="6" rx="1"/><rect x="3" y="14" width="18" height="6" rx="1"/></svg></div>
+        <h3>Infrastructure &amp; Servers</h3>
+        <p>Windows &amp; Linux servers, Active Directory, NAS, hardening, backups, and disaster recovery.</p>
+      </div>
+      <div class="do-card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M17 18a4 4 0 0 0 0-8 6 6 0 0 0-11.6 1.5A3.5 3.5 0 0 0 6 18z"/></svg></div>
+        <h3>Cloud &amp; Networking</h3>
+        <p>Azure VMs, VPN, Cloudflare Tunnel, DNS, VLANs, firewalls, and complete network security.</p>
+      </div>
+      <div class="do-card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></div>
+        <h3>Databases &amp; SQL</h3>
+        <p>Schema design, SQL, data modelling, Neon/Postgres, MIS automation, Power Query &amp; DAX.</p>
+      </div>
+      <div class="do-card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+        <h3>Full-Stack Development</h3>
+        <p>Node.js &amp; Python backends, REST APIs, web frontends, and mobile apps in Flutter / Expo.</p>
       </div>
     </div>
   </div>
@@ -270,156 +239,124 @@
 
 <section id="skills">
   <div class="wrap">
-    <div class="sec-head"><span class="sec-num mono">02</span><h2 class="sec-title">Technical skills</h2><span class="sec-sub">// stack</span></div>
+    <div class="sec-head"><span class="sec-num mono">03</span><h2 class="sec-title">Technical skills</h2><span class="sec-sub">// stack</span></div>
     <div class="skill-grid">
-      <div class="skill-card reveal">
-        <h3><span class="ic mono">[01]</span>Infrastructure & Servers</h3>
-        <div class="chips">
-          <span class="chip">Windows Server 2008R2–2025</span><span class="chip">Active Directory</span>
-          <span class="chip">RDP / TSplus</span><span class="chip">Ubuntu Linux</span>
-          <span class="chip">SSH</span><span class="chip">Server hardening</span><span class="chip">NAS / Backup</span>
-        </div>
-      </div>
-      <div class="skill-card reveal">
-        <h3><span class="ic mono">[02]</span>Virtualization & Cloud</h3>
-        <div class="chips">
-          <span class="chip">Azure VMs</span><span class="chip">VMware Workstation</span>
-          <span class="chip">Linux-hosted VMs</span><span class="chip">VPN remote access</span>
-          <span class="chip">Cloudflare Tunnel</span><span class="chip">Domain & DNS</span>
-        </div>
-      </div>
-      <div class="skill-card reveal">
-        <h3><span class="ic mono">[03]</span>Networking & Security</h3>
-        <div class="chips">
-          <span class="chip">LAN / WAN</span><span class="chip">VLANs</span><span class="chip">Subnetting</span>
-          <span class="chip">TCP/IP</span><span class="chip">DNS / DHCP</span><span class="chip">Firewall config</span>
-        </div>
-      </div>
-      <div class="skill-card reveal">
-        <h3><span class="ic mono">[04]</span>Apps & Automation</h3>
-        <div class="chips">
-          <span class="chip">Node.js</span><span class="chip">Python</span><span class="chip">REST APIs</span>
-          <span class="chip">Render + Neon</span><span class="chip">Docker</span><span class="chip">Postman</span>
-          <span class="chip">Flutter / Expo</span><span class="chip">Excel VBA / .EXE tools</span>
-        </div>
-      </div>
-      <div class="skill-card reveal">
-        <h3><span class="ic mono">[05]</span>Healthcare IT</h3>
-        <div class="chips">
-          <span class="chip">Suvarna HIMS</span><span class="chip">LIS integration</span>
-          <span class="chip">PACS administration</span><span class="chip">DICOM workflows</span>
-          <span class="chip">Clinical / lab systems</span>
-        </div>
-      </div>
-      <div class="skill-card reveal">
-        <h3><span class="ic mono">[06]</span>Support & Operations</h3>
-        <div class="chips">
-          <span class="chip">Hardware / CCTV / GPS</span><span class="chip">IT asset management</span>
-          <span class="chip">AMC & vendor coord.</span><span class="chip">MIS automation</span>
-          <span class="chip">Power Query / DAX</span><span class="chip">Tally / ERP</span>
-        </div>
-      </div>
+      <div class="skill-card reveal"><h3><span class="ic mono">[01]</span>Infrastructure &amp; Servers</h3><div class="chips"><span class="chip">Windows Server 2008R2–2025</span><span class="chip">Active Directory</span><span class="chip">RDP / TSplus</span><span class="chip">Ubuntu Linux</span><span class="chip">SSH</span><span class="chip">Server hardening</span><span class="chip">NAS / Backup</span><span class="chip">Disaster recovery</span></div></div>
+      <div class="skill-card reveal"><h3><span class="ic mono">[02]</span>Cloud &amp; Virtualization</h3><div class="chips"><span class="chip">Azure VMs</span><span class="chip">AZ-104</span><span class="chip">VMware Workstation</span><span class="chip">VPN remote access</span><span class="chip">Cloudflare Tunnel</span><span class="chip">Render</span><span class="chip">Vercel</span><span class="chip">Domain &amp; DNS</span></div></div>
+      <div class="skill-card reveal"><h3><span class="ic mono">[03]</span>Networking &amp; Security</h3><div class="chips"><span class="chip">LAN / WAN</span><span class="chip">VLANs</span><span class="chip">Subnetting</span><span class="chip">TCP/IP</span><span class="chip">DNS / DHCP</span><span class="chip">Firewall (Fortinet)</span><span class="chip">Port forwarding</span><span class="chip">IPSec Tunnel</span></div></div>
+      <div class="skill-card reveal"><h3><span class="ic mono">[04]</span>Databases &amp; Data</h3><div class="chips"><span class="chip">SQL</span><span class="chip">Postgres / Neon</span><span class="chip">Schema design</span><span class="chip">Power Query</span><span class="chip">DAX</span><span class="chip">Tally / ERP data</span><span class="chip">MIS automation</span><span class="chip">Reporting</span></div></div>
+      <div class="skill-card reveal"><h3><span class="ic mono">[05]</span>Backend &amp; APIs</h3><div class="chips"><span class="chip">Node.js</span><span class="chip">Python</span><span class="chip">REST APIs</span><span class="chip">Express</span><span class="chip">Docker</span><span class="chip">Postman</span><span class="chip">Auth / sessions</span><span class="chip">.EXE / VBA tools</span></div></div>
+      <div class="skill-card reveal"><h3><span class="ic mono">[06]</span>Frontend &amp; Mobile</h3><div class="chips"><span class="chip">JavaScript</span><span class="chip">TypeScript</span><span class="chip">HTML / CSS</span><span class="chip">Responsive UI</span><span class="chip">Flutter</span><span class="chip">Expo</span><span class="chip">Mobile sales apps</span></div></div>
+      <div class="skill-card reveal"><h3><span class="ic mono">[07]</span>Healthcare IT</h3><div class="chips"><span class="chip">Suvarna HIMS</span><span class="chip">LIS integration</span><span class="chip">PACS administration</span><span class="chip">DICOM workflows</span><span class="chip">Clinical / lab systems</span></div></div>
+      <div class="skill-card reveal"><h3><span class="ic mono">[08]</span>Support &amp; Operations</h3><div class="chips"><span class="chip">IT asset management</span><span class="chip">Hardware / CCTV / GPS</span><span class="chip">AMC &amp; vendor coord.</span><span class="chip">EMM (MobiControl)</span><span class="chip">Incident resolution</span></div></div>
+      <div class="skill-card reveal"><h3><span class="ic mono">[09]</span>ERP &amp; Business Systems</h3><div class="chips"><span class="chip">Tally ERP 9</span><span class="chip">Syvasoft ERP</span><span class="chip">Weighbridge automation</span><span class="chip">CRM portals</span><span class="chip">Advanced Excel</span></div></div>
     </div>
   </div>
 </section>
 
 <section id="work">
   <div class="wrap">
-    <div class="sec-head"><span class="sec-num mono">03</span><h2 class="sec-title">Projects & repositories</h2><span class="sec-sub">// github.com/moslemerror-maker</span></div>
+    <div class="sec-head"><span class="sec-num mono">04</span><h2 class="sec-title">Projects &amp; repositories</h2><span class="sec-sub">// github.com/moslemerror-maker</span></div>
     <div class="repo-grid">
 
       <a class="repo reveal" href="https://github.com/moslemerror-maker/ner-logistics" target="_blank">
-        <div class="repo-top"><div class="repo-name"><svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 005.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.5 7.5 0 014 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>ner-logistics</div><span class="repo-tag">App</span></div>
-        <p class="repo-desc">Logistics management application for tracking and coordinating freight operations.</p>
+        <div class="repo-top"><div class="repo-name"><svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 005.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.5 7.5 0 014 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>ner-logistics</div><span class="repo-tag">Full-Stack</span></div>
+        <p class="repo-desc">Logistics management platform for tracking and coordinating freight operations end to end.</p>
         <div class="repo-foot"><span class="lang"><span class="d" style="background:#3178c6"></span>TypeScript</span><span class="repo-link">view repo →</span></div>
       </a>
 
       <a class="repo reveal" href="https://github.com/moslemerror-maker/pharmacare-backend" target="_blank">
-        <div class="repo-top"><div class="repo-name"><svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 005.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.5 7.5 0 014 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>pharmacare-backend</div><span class="repo-tag">API</span></div>
-        <p class="repo-desc">Backend service for the PharmaCare platform — pharmacy / medication management APIs.</p>
+        <div class="repo-top"><div class="repo-name"><svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 005.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.5 7.5 0 014 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>pharmacare-backend</div><span class="repo-tag">API · DB</span></div>
+        <p class="repo-desc">Backend &amp; database layer for the PharmaCare platform — pharmacy and medication management APIs.</p>
         <div class="repo-foot"><span class="lang"><span class="d" style="background:#f1e05a"></span>JavaScript</span><span class="repo-link">view repo →</span></div>
       </a>
 
       <a class="repo reveal" href="https://github.com/moslemerror-maker/pharmacare-frontend" target="_blank">
-        <div class="repo-top"><div class="repo-name"><svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 005.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.5 7.5 0 014 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>pharmacare-frontend</div><span class="repo-tag">Web</span></div>
+        <div class="repo-top"><div class="repo-name"><svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 005.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.5 7.5 0 014 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>pharmacare-frontend</div><span class="repo-tag">Frontend</span></div>
         <p class="repo-desc">Frontend for the PharmaCare platform — UI for managing pharmacy and patient workflows.</p>
         <div class="repo-foot"><span class="lang"><span class="d" style="background:#f1e05a"></span>JavaScript</span><span class="repo-link">view repo →</span></div>
       </a>
 
       <a class="repo reveal" href="https://github.com/moslemerror-maker/hardware-tracker" target="_blank">
-        <div class="repo-top"><div class="repo-name"><svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 005.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.5 7.5 0 014 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>hardware-tracker</div><span class="repo-tag">Tool</span></div>
-        <p class="repo-desc">IT hardware & asset tracking tool for logging, assigning, and monitoring equipment.</p>
+        <div class="repo-top"><div class="repo-name"><svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 005.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.5 7.5 0 014 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>hardware-tracker</div><span class="repo-tag">Tool · DB</span></div>
+        <p class="repo-desc">IT hardware &amp; asset tracking tool for logging, assigning, and monitoring equipment across sites.</p>
         <div class="repo-foot"><span class="lang"><span class="d" style="background:#f1e05a"></span>JavaScript</span><span class="repo-link">view repo →</span></div>
       </a>
 
       <a class="repo reveal" href="https://github.com/moslemerror-maker/best-cement-crm-portal" target="_blank">
-        <div class="repo-top"><div class="repo-name"><svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 005.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.5 7.5 0 014 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>best-cement-crm-portal</div><span class="repo-tag">CRM</span></div>
-        <p class="repo-desc">In-house CRM portal for managing employees, dealers, and sub-dealers — with birthday reminders.</p>
+        <div class="repo-top"><div class="repo-name"><svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 005.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.5 7.5 0 014 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>best-cement-crm-portal</div><span class="repo-tag">CRM · Full-Stack</span></div>
+        <p class="repo-desc">In-house CRM portal for managing employees, dealers, and sub-dealers — with birthday reminders and reporting.</p>
         <div class="repo-foot"><span class="lang"><span class="d" style="background:#f1e05a"></span>JavaScript</span><span class="repo-link">view repo →</span></div>
       </a>
 
       <a class="repo reveal" href="https://github.com/moslemerror-maker/sales-tracker" target="_blank">
-        <div class="repo-top"><div class="repo-name"><svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 005.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.5 7.5 0 014 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>sales-tracker</div><span class="repo-tag">App</span></div>
-        <p class="repo-desc">Sales tracking application for monitoring field-sales activity and performance.</p>
+        <div class="repo-top"><div class="repo-name"><svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 005.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.5 7.5 0 014 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>sales-tracker</div><span class="repo-tag">App · DB</span></div>
+        <p class="repo-desc">Sales tracking application for monitoring field-sales activity, targets, and performance.</p>
         <div class="repo-foot"><span class="lang"><span class="d" style="background:#3178c6"></span>TypeScript</span><span class="repo-link">view repo →</span></div>
       </a>
 
       <a class="repo reveal" href="https://github.com/moslemerror-maker/sfa" target="_blank">
         <div class="repo-top"><div class="repo-name"><svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 005.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.5 7.5 0 014 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>sfa</div><span class="repo-tag">App</span></div>
-        <p class="repo-desc">Sales Force Automation tool for managing field staff, routes, and reporting.</p>
-        <div class="repo-foot"><span class="lang"><span class="d" style="background:#8b9aa7"></span>Mixed</span><span class="repo-link">view repo →</span></div>
+        <p class="repo-desc">Sales Force Automation tool for managing field staff, routes, visits, and reporting.</p>
+        <div class="repo-foot"><span class="lang"><span class="d" style="background:#8b9aa7"></span>Multi</span><span class="repo-link">view repo →</span></div>
       </a>
 
       <a class="repo reveal" href="https://github.com/moslemerror-maker/roadways-ledger-backend" target="_blank">
-        <div class="repo-top"><div class="repo-name"><svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 005.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.5 7.5 0 014 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>roadways-ledger</div><span class="repo-tag">Full-stack</span></div>
-        <p class="repo-desc">Ledger & accounting system for roadways / transport operations — backend + HTML frontend.</p>
+        <div class="repo-top"><div class="repo-name"><svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 005.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.5 7.5 0 014 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>roadways-ledger</div><span class="repo-tag">Full-Stack · DB</span></div>
+        <p class="repo-desc">Ledger &amp; accounting system for roadways / transport operations — backend APIs plus an HTML frontend.</p>
         <div class="repo-foot"><span class="lang"><span class="d" style="background:#f1e05a"></span>JS + HTML</span><span class="repo-link">view repo →</span></div>
       </a>
 
       <a class="repo reveal" href="https://github.com/moslemerror-maker/asset-app-backend" target="_blank">
-        <div class="repo-top"><div class="repo-name"><svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 005.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.5 7.5 0 014 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>asset-app</div><span class="repo-tag">Full-stack</span></div>
-        <p class="repo-desc">IT asset management application — backend APIs with an HTML frontend for tracking assets.</p>
+        <div class="repo-top"><div class="repo-name"><svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 005.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.5 7.5 0 014 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>asset-app</div><span class="repo-tag">Full-Stack · DB</span></div>
+        <p class="repo-desc">IT asset management application — backend APIs and database with an HTML frontend for tracking assets.</p>
         <div class="repo-foot"><span class="lang"><span class="d" style="background:#f1e05a"></span>JS + HTML</span><span class="repo-link">view repo →</span></div>
       </a>
 
     </div>
     <p style="margin-top:24px;color:var(--ink-faint);font-family:'IBM Plex Mono';font-size:13px">→ See all repositories on <a href="https://github.com/moslemerror-maker?tab=repositories" target="_blank">github.com/moslemerror-maker</a></p>
+
+    <div class="ms-box reveal">
+      <h3 style="font-family:'Space Grotesk';font-weight:600;font-size:1.05rem;margin-bottom:14px">Infrastructure milestones</h3>
+      <p style="color:var(--ink-dim);font-size:.95rem;margin-bottom:14px">Beyond code, key implementations delivered on the job:</p>
+      <div class="ms-grid">
+        <div style="color:var(--ink-dim);font-size:.9rem">→ Suvarna HIMS with integrated LIS + PACS/DICOM at a multi-specialty hospital</div>
+        <div style="color:var(--ink-dim);font-size:.9rem">→ Windows/Linux infra with VPN &amp; Cloudflare Tunnel secure access</div>
+        <div style="color:var(--ink-dim);font-size:.9rem">→ NAS server for centralized storage, backup &amp; software distribution</div>
+        <div style="color:var(--ink-dim);font-size:.9rem">→ IT asset management portal &amp; MIS automation across departments</div>
+      </div>
+    </div>
   </div>
 </section>
 
 <section id="experience">
   <div class="wrap">
-    <div class="sec-head"><span class="sec-num mono">04</span><h2 class="sec-title">Experience</h2><span class="sec-sub">// 9+ years</span></div>
+    <div class="sec-head"><span class="sec-num mono">05</span><h2 class="sec-title">Experience</h2><span class="sec-sub">// 9+ years</span></div>
     <div class="timeline reveal">
       <div class="tl-item now">
-        <div class="tl-date mono">MAR 2026 — PRESENT</div>
-        <div class="tl-role">Deputy Manager — IT Head</div>
+        <div class="tl-date mono">MAR 2026 — PRESENT</div><div class="tl-role">Deputy Manager — IT Head</div>
         <div class="tl-co">Marwari Hospitals, Guwahati</div>
-        <div class="tl-desc">Lead end-to-end IT infrastructure: on-prem & cloud servers, networking, and security. Implementing Suvarna HIMS with integrated LIS, administering PACS/DICOM imaging, building in-house web apps, and managing firewalls, VLANs, backups, and disaster recovery.</div>
+        <div class="tl-desc">Lead end-to-end IT: on-prem &amp; cloud servers, networking, and security. Implementing Suvarna HIMS with integrated LIS, administering PACS/DICOM imaging, building in-house web apps, and managing firewalls, VLANs, backups, and disaster recovery.</div>
       </div>
       <div class="tl-item">
-        <div class="tl-date mono">SEP 2025 — MAR 2026</div>
-        <div class="tl-role">Senior IT Executive</div>
+        <div class="tl-date mono">SEP 2025 — MAR 2026</div><div class="tl-role">Senior IT Executive</div>
         <div class="tl-co">JUD Cement Ltd. (Best Cement), Guwahati</div>
-        <div class="tl-desc">Managed Windows & Linux servers, NAS infrastructure, and backups. Administered VPN, RDP, TSplus, and Cloudflare Tunnel for remote access. Maintained internal apps, mobile sales systems, email, domains, and DNS.</div>
+        <div class="tl-desc">Managed Windows &amp; Linux servers, NAS, and backups. Administered VPN, RDP, TSplus, and Cloudflare Tunnel. Built &amp; maintained internal apps, the CRM portal, mobile sales systems, email, domains, and DNS.</div>
       </div>
       <div class="tl-item">
-        <div class="tl-date mono">JAN 2024 — SEP 2025</div>
-        <div class="tl-role">Senior IT — MIS Executive</div>
+        <div class="tl-date mono">JAN 2024 — SEP 2025</div><div class="tl-role">Senior IT — MIS Executive</div>
         <div class="tl-co">Singh Brothers, Guwahati</div>
-        <div class="tl-desc">Ran Tally & Syvasoft ERP operations and weighbridge automation. Automated reports with Power Query and DAX to improve data accuracy and cut manual effort.</div>
+        <div class="tl-desc">Ran Tally &amp; Syvasoft ERP operations and weighbridge automation. Automated reporting with Power Query and DAX, improving data accuracy and cutting manual effort across MIS workflows.</div>
       </div>
       <div class="tl-item">
-        <div class="tl-date mono">OCT 2021 — JAN 2024</div>
-        <div class="tl-role">Assistant Manager — IT</div>
+        <div class="tl-date mono">OCT 2021 — JAN 2024</div><div class="tl-role">Assistant Manager — IT</div>
         <div class="tl-co">Indo-Bangla Minerals Mine, Meghalaya</div>
         <div class="tl-desc">Administered Windows Servers and Active Directory, managed RDP and Tally environments, and handled LAN/WAN, switches, firewall, CCTV, GPS, and EMM (MobiControl) device management.</div>
       </div>
       <div class="tl-item">
-        <div class="tl-date mono">2017 — 2021</div>
-        <div class="tl-role">IT Executive roles</div>
+        <div class="tl-date mono">2017 — 2021</div><div class="tl-role">IT Executive roles</div>
         <div class="tl-co">Parcon · Purbanchal Cement · Al-Ghafees Construction (Riyadh, KSA)</div>
-        <div class="tl-desc">Early-career foundation: Windows Server 2008 & Linux administration, LAN infrastructure, firewall troubleshooting, ERP/Tally support, and mobile sales-force applications across India and Saudi Arabia.</div>
+        <div class="tl-desc">Career foundation: Windows Server 2008 &amp; Linux administration, LAN infrastructure, firewall troubleshooting, ERP/Tally support, and mobile sales-force applications across India and Saudi Arabia.</div>
       </div>
     </div>
   </div>
@@ -427,14 +364,14 @@
 
 <section id="certs">
   <div class="wrap">
-    <div class="sec-head"><span class="sec-num mono">05</span><h2 class="sec-title">Certifications & education</h2><span class="sec-sub">// credentials</span></div>
+    <div class="sec-head"><span class="sec-num mono">06</span><h2 class="sec-title">Certifications &amp; education</h2><span class="sec-sub">// credentials</span></div>
     <div class="cert-grid reveal">
       <div class="cert"><span class="badge">CCNA</span><div><div class="t">Cisco Certified Network Associate</div><div class="o mono">Cisco</div></div></div>
       <div class="cert"><span class="badge">AZ-104</span><div><div class="t">Azure Administrator Associate</div><div class="o mono">Microsoft</div></div></div>
       <div class="cert"><span class="badge">FCA</span><div><div class="t">Fortinet Certified Associate — Cybersecurity</div><div class="o mono">Fortinet</div></div></div>
-      <div class="cert"><span class="badge">HW</span><div><div class="t">Hardware & Upgrade Support</div><div class="o mono">Cisco Networking Academy</div></div></div>
+      <div class="cert"><span class="badge">HW</span><div><div class="t">Hardware &amp; Upgrade Support</div><div class="o mono">Cisco Networking Academy</div></div></div>
       <div class="cert"><span class="badge">XLS</span><div><div class="t">Advanced Excel</div><div class="o mono">Amity University</div></div></div>
-      <div class="cert"><span class="badge">DS</span><div><div class="t">Data Science & Analytics</div><div class="o mono">HP LIFE</div></div></div>
+      <div class="cert"><span class="badge">DS</span><div><div class="t">Data Science &amp; Analytics</div><div class="o mono">HP LIFE</div></div></div>
       <div class="cert"><span class="badge">BCA</span><div><div class="t">Bachelor of Computer Applications</div><div class="o mono">IGNOU</div></div></div>
       <div class="cert"><span class="badge">ADCA</span><div><div class="t">Adv. Diploma in Computer Applications</div><div class="o mono">Third Eye Institute</div></div></div>
     </div>
@@ -445,7 +382,7 @@
   <div class="wrap">
     <div class="contact reveal">
       <h2>Let's build something reliable.</h2>
-      <p>Open to senior IT leadership roles in infrastructure, cloud, and healthcare IT. The fastest way to reach me is email.</p>
+      <p>Open to senior IT leadership roles across infrastructure, cloud, full-stack development, and healthcare IT. The fastest way to reach me is email.</p>
       <div class="contact-links">
         <a class="btn btn-primary" href="mailto:isheikh2232@gmail.com">isheikh2232@gmail.com</a>
         <a class="btn btn-ghost" href="https://github.com/moslemerror-maker" target="_blank">GitHub</a>
@@ -460,8 +397,29 @@
 </footer>
 
 <script>
+(function(){
+  const bar=document.getElementById('progress');
+  const onScroll=()=>{const h=document.documentElement;const p=h.scrollTop/(h.scrollHeight-h.clientHeight);bar.style.width=(p*100)+'%';};
+  document.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
   const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  const animateCount=(el)=>{const to=+el.dataset.to;const dur=1100;const t0=performance.now();
+    const step=(t)=>{const k=Math.min(1,(t-t0)/dur);el.textContent=Math.round(to*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(step);};requestAnimationFrame(step);};
+  const cio=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){animateCount(e.target);cio.unobserve(e.target)}})},{threshold:.6});
+  document.querySelectorAll('.count').forEach(el=>cio.observe(el));
+
+  const words=['IT infrastructure.','cloud environments.','databases & SQL.','full-stack web apps.','healthcare systems.'];
+  const tEl=document.getElementById('typed');let wi=0,ci=0,del=false;
+  const type=()=>{const w=words[wi];
+    if(!del){tEl.textContent=w.slice(0,++ci);if(ci===w.length){del=true;return setTimeout(type,1500);}}
+    else{tEl.textContent=w.slice(0,--ci);if(ci===0){del=false;wi=(wi+1)%words.length;}}
+    setTimeout(type,del?42:78);};
+  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){type();}else{tEl.textContent=words[0];}
+
+  document.querySelectorAll('.repo').forEach(r=>{r.addEventListener('pointermove',e=>{const b=r.getBoundingClientRect();r.style.setProperty('--mx',(e.clientX-b.left)+'px');r.style.setProperty('--my',(e.clientY-b.top)+'px');});});
+})();
 </script>
 </body>
 </html>
